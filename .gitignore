@@ -1,0 +1,6 @@
+# Private: personal health data and personal test fixtures — never publish
+js/data/personal-seed.js
+js/tests.js
+tests.html
+README-private.md
+*backup*.json

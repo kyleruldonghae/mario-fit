@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mario Fit — schematic gallery</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { padding: 12px; }
+  .g { display: grid; grid-template-columns: 140px repeat(3, 1fr); gap: 6px; align-items: center; margin-bottom: 6px; }
+  .g svg { width: 100%; height: auto; background: var(--card); border-radius: 10px; }
+  .g h3 { font-size: 13px; margin: 0; }
+</style>
+</head>
+<body>
+<h1>Schematic gallery</h1>
+<p class="muted">Every exercise illustration at start, middle and end of the movement. All drawings are schematic. <a href="./">Back to the app</a></p>
+<div id="out"></div>
+<script type="module">
+  import { EXERCISES } from './js/data/exercises.js';
+  import { illustration } from './js/figure.js';
+  const only = new URLSearchParams(location.search).get('only');
+  document.getElementById('out').innerHTML = EXERCISES.filter((e) => !only || only.split(',').includes(e.id)).map((e) => `<div class="g"><h3>${e.de}<br><span class="muted">${e.en}</span></h3>${[0, 0.5, 1].map((p) => illustration(e.pose, { p, still: true })).join('')}</div>`).join('');
+</script>
+</body>
+</html>
